@@ -20,8 +20,7 @@ import type { CustomParameters, Uuid } from './type/common';
 import type { TwilioError } from './error/TwilioError';
 import { InvalidArgumentError } from './error/InvalidArgumentError';
 import { constructTwilioError } from './error/utility';
-import type { CallMessage } from './CallMessage/CallMessage';
-import { validateCallMessage } from './CallMessage/CallMessage';
+import { CallMessage, validateCallMessage } from './CallMessage/CallMessage';
 import { IncomingCallMessage } from './CallMessage/IncomingCallMessage';
 import { OutgoingCallMessage } from './CallMessage/OutgoingCallMessage';
 

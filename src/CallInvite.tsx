@@ -20,8 +20,7 @@ import type {
   NativeCallInviteMessageReceivedEvent,
 } from './type/CallInvite';
 import type { CustomParameters, Uuid } from './type/common';
-import type { CallMessage } from './CallMessage/CallMessage';
-import { validateCallMessage } from './CallMessage/CallMessage';
+import { CallMessage, validateCallMessage } from './CallMessage/CallMessage';
 import { IncomingCallMessage } from './CallMessage/IncomingCallMessage';
 import { OutgoingCallMessage } from './CallMessage/OutgoingCallMessage';
 import { Constants } from './constants';
