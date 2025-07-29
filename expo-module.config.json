@@ -1,0 +1,13 @@
+{
+  "platforms": ["android", "ios"],
+  "android": {
+    "modules": ["com.twiliovoicereactnative.ExpoModule"],
+    "packageName": "com.twiliovoicereactnative",
+    "moduleName": "twilio-voice-react-native-sdk",
+    "_gradleTaskName": "twilio-voice-react-native-sdk",
+    "buildType": {
+      "libraryName": "twilio-voice-react-native-sdk",
+      "skipNativeModulesValidation": true
+    }
+  }
+}
