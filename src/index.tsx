@@ -19,6 +19,7 @@ export { OutgoingCallMessage } from './CallMessage/OutgoingCallMessage';
 export { CustomParameters } from './type/common';
 export { CallKit } from './type/CallKit';
 export { RTCStats } from './type/RTCStats';
+export { ExpoModule } from './ExpoModule'; // Expo support
 
 import * as TwilioErrors from './error';
 export { TwilioErrors };

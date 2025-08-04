@@ -471,6 +471,14 @@ namespace ClientErrors {
 export type CustomParameters = Record<string, string>;
 
 // @public
+export class ExpoModule {
+    constructor();
+    connect(accessToken: string, callee?: string, twiMLParams?: Record<string, string>, displayName?: string): Promise<any>;
+    register(accessToken: string): Promise<any>;
+    unregister(): Promise<any>;
+}
+
+// @public
 namespace ForbiddenErrors {
     class Forbidden extends TwilioError {
         constructor(message: string);
