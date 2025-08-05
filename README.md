@@ -55,10 +55,6 @@ To have your application implement or use its own `PushKit` delegate module, ple
 
 To have your application implement or use a different `FirebaseMessagingService` (such as OneSignal or RNFirebase), please see [this](/docs/out-of-band-firebase-messaging-service.md) document.
 
-### Expo Support
-
-To use this library with Expo applications, please see [this](/docs/expo-support.md) document that explains how to integrate with Expo Dev Client.
-
 ## Issues and Support
 
 Please check out our [common issues](/COMMON_ISSUES.md) page or file any issues you find here on Github. For general inquiries related to the Voice SDK you can file a support ticket.

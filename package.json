@@ -42,9 +42,13 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "expo",
+    "expo-dev-client",
+    "expo-plugin"
   ],
   "repository": "https://github.com/twilio/twilio-voice-react-native",
+  "expo-plugin": "./expo-config-plugin",
   "author": "Michael Huynh <mhuynh@twilio.com> (https://github.com/twilio)",
   "license": "MIT",
   "bugs": {
