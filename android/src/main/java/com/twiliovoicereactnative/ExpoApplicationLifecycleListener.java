@@ -12,8 +12,7 @@ public class ExpoApplicationLifecycleListener implements ApplicationLifecycleLis
         this.voiceApplicationProxy.onCreate();
     }
 
-    @Override
-    public void onDestroy() {
+    public void onTerminate() {
         if (this.voiceApplicationProxy != null) {
             this.voiceApplicationProxy.onTerminate();
         }

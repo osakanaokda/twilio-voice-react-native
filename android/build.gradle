@@ -74,7 +74,18 @@ afterEvaluate {
     ['compileDebugLibraryResources', 'packageDebugResources'],
     ['generateDebugRFile', 'processDebugManifest'],
     ['generateDebugRFile', 'parseDebugLocalResources'],
-    ['copyDebugJniLibsProjectOnly', 'mergeDebugNativeLibs']
+    ['copyDebugJniLibsProjectOnly', 'mergeDebugNativeLibs'],
+    ['compileDebugJavaWithJavac', 'generateDebugRFile'],
+    ['compileDebugKotlin', 'generateDebugBuildConfig'],
+    ['compileDebugJavaWithJavac', 'javaPreCompileDebug'],
+    ['compileDebugJavaWithJavac', 'compileDebugKotlin'],
+    ['bundleLibCompileToJarDebug', 'compileDebugJavaWithJavac'],
+    ['bundleLibRuntimeToJarDebug', 'compileDebugJavaWithJavac'],
+    ['processDebugJavaRes', 'compileDebugKotlin'],
+    ['bundleLibRuntimeToDirDebug', 'compileDebugJavaWithJavac'],
+    [':expo:compileDebugJavaWithJavac', ':twilio_voice-react-native-sdk:bundleLibCompileToJarDebug'],
+    [':expo:compileReleaseJavaWithJavac', ':twilio_voice-react-native-sdk:bundleLibCompileToJarRelease'],
+    [':expo:compileStagingJavaWithJavac', ':twilio_voice-react-native-sdk:bundleLibCompileToJarStaging'],
   ]
   resourceTaskPairs.each { pair ->
     // 1. 両方ハイフン

@@ -11,7 +11,12 @@ public class ExpoActivityLifecycleListener implements ReactActivityLifecycleList
 
     @Override
     public void onCreate(Activity activity, Bundle savedInstanceState) {
-        this.voiceActivityProxy = new VoiceActivityProxy(activity);
+        this.voiceActivityProxy = new VoiceActivityProxy(activity, new VoiceActivityProxy.PermissionsRationaleNotifier() {
+            @Override
+            public void displayRationale(final String permission) {
+                // TODO: 必要に応じて rationale の表示処理を実装
+            }
+        });
         this.voiceActivityProxy.onCreate(savedInstanceState);
     }
 
