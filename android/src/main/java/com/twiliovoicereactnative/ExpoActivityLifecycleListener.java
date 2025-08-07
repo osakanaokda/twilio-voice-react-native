@@ -14,7 +14,11 @@ public class ExpoActivityLifecycleListener implements ReactActivityLifecycleList
         this.voiceActivityProxy = new VoiceActivityProxy(activity, new VoiceActivityProxy.PermissionsRationaleNotifier() {
             @Override
             public void displayRationale(final String permission) {
-                // TODO: 必要に応じて rationale の表示処理を実装
+                new android.app.AlertDialog.Builder(activity)
+                        .setTitle("パーミッションが必要です")
+                        .setMessage(permission + " の権限が必要です。アプリの機能を利用するために許可してください。")
+                        .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                        .show();
             }
         });
         this.voiceActivityProxy.onCreate(savedInstanceState);

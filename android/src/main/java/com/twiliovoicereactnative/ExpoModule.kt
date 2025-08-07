@@ -9,8 +9,29 @@ import com.twiliovoicereactnative.VoiceApplicationProxy
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
 import expo.modules.kotlin.Promise
+
 import java.util.HashMap
 import java.util.UUID
+
+// RegistrationListenerの明示クラス
+class RegistrationListenerProxy(private val promise: Promise) : com.twilio.voice.RegistrationListener {
+    override fun onRegistered(accessToken: String, params: String) {
+        promise.resolve(true)
+    }
+    override fun onError(error: com.twilio.voice.RegistrationException, accessToken: String, params: String) {
+        promise.reject("REGISTER_ERROR", error.message, error)
+    }
+}
+
+// UnregistrationListenerの明示クラス
+class UnregistrationListenerProxy(private val promise: Promise) : com.twilio.voice.UnregistrationListener {
+    override fun onUnregistered(accessToken: String, params: String) {
+        promise.resolve(true)
+    }
+    override fun onError(error: com.twilio.voice.RegistrationException, accessToken: String, params: String) {
+        promise.reject("UNREGISTER_ERROR", error.message, error)
+    }
+}
 
 class ExpoModule : Module() {
     override fun definition() = ModuleDefinition {
@@ -75,15 +96,7 @@ class ExpoModule : Module() {
                     val regChannel = voiceClass.getField("RegistrationChannel").get(null)
                     val fcmEnum = regChannel.javaClass.getField("FCM").get(regChannel)
                     val register = voiceClass.getMethod("register", String::class.java, fcmEnum.javaClass, String::class.java, Class.forName("com.twilio.voice.RegistrationListener"))
-                    // RegistrationListenerの実装
-                    val listenerProxy = object : com.twilio.voice.RegistrationListener {
-                        override fun onRegistered(accessToken: String, params: String) {
-                            promise.resolve(true)
-                        }
-                        override fun onError(error: com.twilio.voice.RegistrationException, accessToken: String, params: String) {
-                            promise.reject("REGISTER_ERROR", error.message, error)
-                        }
-                    }
+                    val listenerProxy = RegistrationListenerProxy(promise)
                     register.invoke(null, accessToken, fcmEnum, fcmToken, listenerProxy)
                 } catch (e: Exception) {
                     promise.reject("REGISTER_FAIL", "Voice.register failed: ${e.message}", e)
@@ -122,15 +135,7 @@ class ExpoModule : Module() {
                     val regChannel = voiceClass.getField("RegistrationChannel").get(null)
                     val fcmEnum = regChannel.javaClass.getField("FCM").get(regChannel)
                     val unregister = voiceClass.getMethod("unregister", String::class.java, fcmEnum.javaClass, String::class.java, Class.forName("com.twilio.voice.UnregistrationListener"))
-                    // UnregistrationListenerの実装
-                    val listenerProxy = object : com.twilio.voice.UnregistrationListener {
-                        override fun onUnregistered(accessToken: String, params: String) {
-                            promise.resolve(true)
-                        }
-                        override fun onError(error: com.twilio.voice.RegistrationException, accessToken: String, params: String) {
-                            promise.reject("UNREGISTER_ERROR", error.message, error)
-                        }
-                    }
+                    val listenerProxy = UnregistrationListenerProxy(promise)
                     unregister.invoke(null, accessToken, fcmEnum, fcmToken, listenerProxy)
                 } catch (e: Exception) {
                     promise.reject("UNREGISTER_FAIL", "Voice.unregister failed: ${e.message}", e)
