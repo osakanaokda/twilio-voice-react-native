@@ -1,0 +1,24 @@
+{
+  "name": "twilio-voice-react-native-plugin",
+  "version": "1.0.0",
+  "description": "Expo config plugin for twilio-voice-react-native",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "expo",
+    "react-native",
+    "config-plugin",
+    "twilio-voice"
+  ],
+  "author": "Twilio",
+  "license": "MIT",
+  "dependencies": {
+    "@expo/config-plugins": "^7.8.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
