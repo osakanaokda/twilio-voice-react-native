@@ -24,4 +24,9 @@
     "strict": true,
     "target": "esnext"
   },
+  "exclude": [
+    "test/app",
+    "test/TwilioVoiceExampleNewArch",
+    "expo-config-plugin"
+  ]
 }

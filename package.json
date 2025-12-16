@@ -7,6 +7,7 @@
   "types": "lib/typescript/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
+  "app.plugin": "expo-config-plugin/build/index.js",
   "files": [
     "src",
     "lib",
@@ -14,6 +15,7 @@
     "ios",
     "cpp",
     "twilio-voice-react-native.podspec",
+    "expo-config-plugin/build",
     "!lib/typescript/test/app",
     "!android/build",
     "!ios/build",
@@ -35,7 +37,7 @@
     "check:api": "git diff --exit-code src/error/generated.ts api/",
     "check": "yarn run build:constants && yarn run build:errors && yarn run build:docs && yarn run check:api && yarn run check:type && yarn run check:lint && yarn run check:test --coverage",
     "pods": "cd test/app && pod-install --quiet",
-    "prepare": "yarn run build:constants && bob build",
+    "prepare": "yarn run build:constants && bob build && cd expo-config-plugin && yarn install && yarn build",
     "release": "release",
     "test": "jest"
   },
@@ -131,7 +133,8 @@
     "lib/",
     "test/app/",
     "src/error/generated.ts",
-    "coverage/"
+    "coverage/",
+    "expo-config-plugin/build/"
   ],
   "prettier": {
     "quoteProps": "consistent",
@@ -157,5 +160,9 @@
   "dependencies": {
     "@twilio/voice-errors": "1.8.0",
     "eventemitter3": "^4.0.7"
+  },
+  "resolutions": {
+    "@babel/plugin-transform-classes": "^7.23.0",
+    "@babel/traverse": "^7.23.0"
   }
 }
